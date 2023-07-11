@@ -2,6 +2,7 @@ import pygame
 import pygame.locals
 import pygame.freetype
 import time
+import os
 from collections import defaultdict
 
 
@@ -33,7 +34,7 @@ display = pygame.display.set_mode((width, height), pygame.RESIZABLE, vsync=1,)
 # loads cell image and simplifies cell drawing
 class cellSingleton:
     def __init__(self):
-        self.image = pygame.image.load("cell.png").convert_alpha()
+        self.image = pygame.image.load(os.path.dirname(__file__) + "/cell.png").convert_alpha()
         self.rect = self.image.get_rect()
 
     def draw(self, x, y):
@@ -50,7 +51,7 @@ cell = cellSingleton()
 # loads grid image and simplifies grid drawing
 class gridCellSingleton:
     def __init__(self):
-        self.image = pygame.image.load("grid.png").convert_alpha()
+        self.image = pygame.image.load(os.path.dirname(__file__) + "/grid.png").convert_alpha()
         self.rect = self.image.get_rect()
         self.width = self.image.get_width()
         self.height = self.image.get_height()
@@ -69,7 +70,7 @@ gridCell = gridCellSingleton()
 # loads font and simplifies text drawing
 class textSingleton:
     def __init__(self, color=(0, 0, 0)):
-        self.font = pygame.freetype.Font("Consolas.ttf", 17)
+        self.font = pygame.freetype.Font(os.path.dirname(__file__) + "/Consolas.ttf", 17)
         self.color = color
 
     def draw(self, string, x, y):
